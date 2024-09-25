@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "monty.h"
 
 /**
 * push - pushes an element onto the stack
@@ -18,7 +19,7 @@ void push(stack_t **stack, unsigned int line_number, char *arg)
 int value;
 stack_t *new_node;
 
-if (arg == NULL || !isdigit(arg[0]) && arg[0] != '-' && !isdigit(arg[1]))
+if (arg == NULL || (!isdigit(arg[0]) && arg[0] != '-' && !isdigit(arg[1])))
 {
 fprintf(stderr, "L%u: usage: push integer\n", line_number);
 exit(EXIT_FAILURE);
@@ -52,11 +53,13 @@ if (*stack != NULL)
 * bottom. Each value is printed on a new line. If the stack is empty,
 * nothing is printed.
 */
-void pall(stack_t **stack, unsigned int line_number)
+void pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
 stack_t *current = *stack;
 
-while (current != NULL)
+if (current == NULL)
+return;
+while (current)
 {
 printf("%d\n", current->n);
 current = current->next;
