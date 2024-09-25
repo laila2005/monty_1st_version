@@ -41,6 +41,12 @@ void (*f)(stack_t **stack, unsigned int line_number);
 
 typedef void (*op_func)(stack_t **, unsigned int);
 
+/*file operations*/
+void open_file(char *file_name);
+void read_file(FILE *fd);
+void parse_line(char *buffer, int line_number, stack_t **stack);
+
+/*implemnt finctions*/
 void execute_op(char *opcode, char *arg,
 unsigned int line_number, stack_t **stack);
 void push(stack_t **stack, unsigned int line_number, char *arg);
@@ -50,4 +56,7 @@ void swap(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
+
+extern stack_t *head;
+
 #endif
